@@ -6,7 +6,7 @@ let malen = false;
 let checkUsername = false;
 function start(_event) {
     canvas.width = window.innerWidth;
-    canvas.height = 500;
+    canvas.height = window.innerHeight / 2;
     canvas.addEventListener("mousedown", startDrawing);
     canvas.addEventListener("mousemove", zeichnen);
     canvas.addEventListener("mouseup", stopDrawing);
@@ -14,15 +14,32 @@ function start(_event) {
     canvassize.addEventListener("change", canvasSize);
     let pensilcolor = document.querySelector("select#pensilColor");
     pensilcolor.addEventListener("change", pensilColor);
+    let backgroundcolor = document.querySelector("select#backgroundColor");
+    backgroundcolor.addEventListener("change", backgroundColor);
+    let clearcanvasbutton = document.querySelector("button#clearCanvas");
+    clearcanvasbutton.addEventListener("click", clearCanvas);
+    let savecanvasbutton = document.querySelector("button#savePicture");
+    savecanvasbutton.addEventListener("click", savePicture);
+    let circle = document.querySelector("button#drawCircle");
+    circle.addEventListener("click", drawCircle);
     username();
 }
+function drawCircle() {
+    crc2.beginPath();
+    crc2.arc(100, 100, 50, 0, Math.PI * 2, false);
+    crc2.stroke();
+}
+function backgroundColor() {
+    let backgroundcolor = document.querySelector("select#backgroundColor");
+    canvas.style.background = backgroundcolor.value;
+}
 function username() {
-    let user = prompt("Please enter your username:", "DNJKLAQNDKOJ");
+    let user = prompt("Please enter your username:", "Username");
     if (checkUsername == false) {
         checkUsername = true;
-        document.getElementById("username1").innerHTML =
+        document.getElementById("username1").innerHTML = //Issue Posten: Warum ist document possibly 0?
             "Zauberbild " + user;
-        document.getElementById("username2").innerHTML =
+        document.getElementById("username2").innerHTML = //Issue Posten: Warum ist document possibly 0?
             "Welcome " + user + " !";
     }
     else {
@@ -68,9 +85,20 @@ function clearCanvas() {
 }
 function canvasSize() {
     let canvassize = document.querySelector("select#canvasSize");
-    let canvasHeight = parseFloat(canvassize.value);
-    canvas.width = window.innerWidth;
-    canvas.height = canvasHeight;
+    switch (canvassize.value) {
+        case ("small"):
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight / 3;
+            break;
+        case ("medium"):
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight / 2;
+            break;
+        case ("large"):
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight / 1.5;
+            break;
+    }
 }
 function savePicture() {
     let confirmation = confirm("Do you really want to save your picture?");

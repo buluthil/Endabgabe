@@ -12,8 +12,9 @@
         <h1 id="username1">Zauberbild</h1>
         <canvas id="canvas"></canvas>
         <div id="buttonsAndtools">
-            <button type="button" id="clearCanvas" onclick=clearCanvas()>Clear Canvas</button>
-            <button type="button" id="savePicture" onclick=savePicture()>Save Picture</button>
+            <button type="button" id="clearCanvas">Clear Canvas</button>
+            <button type="button" id="savePicture">Save Picture</button>
+            <button type="button" id="drawCircle">Draw Circle</button>
             <fieldset>
                 <legend>Pensil Color:</legend>
                 <select name="color" id="pensilColor">
@@ -29,9 +30,21 @@
             <fieldset>
                 <legend>Canvas Size:</legend>
                 <select name="size" id="canvasSize">
-                    <option value="500" name="200" size="Small">Small</option>
-                    <option value="1000" name="200" size="Middle">Medium</option>
-                    <option value="1500" name="200" size="Large">Large</option>
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                </select>
+            </fieldset>
+            <fieldset>
+                <legend>Canvas Background:</legend>
+                <select name="backgroundcolor" id="backgroundColor">
+                <option value="Red">Red</option>
+                <option value="Green">Green</option>
+                <option value="Blue">Blue</option>
+                <option value="Yellow">Yellow</option>
+                <option value="Pink">Pink</option>
+                <option value="Black">Black</option>
+                <option value="Orange">Orange</option>
                 </select>
             </fieldset>
          <p id="username2"></p>
