@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesheet.css" type="text/css" media="screen" />
     <link href="https://fonts.googleapis.com/?cssfamily=Roboto:400,900" rel="stylesheet">
+    <script src="canvas.js" type="text/javascript" charset="UTF-8" async></script>
     <title>Zauberbild</title>
 </head>
 <body>
@@ -18,14 +19,25 @@
             <fieldset>
                 <legend>Pensil Color:</legend>
                 <select name="color" id="pensilColor">
+                <option value="Black">Black</option>
+                <option value="White">White</option>
                 <option value="Red">Red</option>
                 <option value="Green">Green</option>
                 <option value="Blue">Blue</option>
                 <option value="Yellow">Yellow</option>
                 <option value="Pink">Pink</option>
-                <option value="Black">Black</option>
                 <option value="Orange">Orange</option>
                 </select>
+            </fieldset>
+            <fieldset>
+                <legend>Pensil Thickness</legend>
+                <span id="slider">
+                    <span>
+                        1 Px
+                        <input type="range" name="thickness" id="pensilThickness" min="1" max="50" step="1" value="1">
+                        50 Px
+                    </span>
+                </span>
             </fieldset>
             <fieldset>
                 <legend>Canvas Size:</legend>
@@ -38,18 +50,18 @@
             <fieldset>
                 <legend>Canvas Background:</legend>
                 <select name="backgroundcolor" id="backgroundColor">
+                <option value="White">White</option>
+                <option value="Black">Black</option>
                 <option value="Red">Red</option>
                 <option value="Green">Green</option>
                 <option value="Blue">Blue</option>
                 <option value="Yellow">Yellow</option>
                 <option value="Pink">Pink</option>
-                <option value="Black">Black</option>
                 <option value="Orange">Orange</option>
                 </select>
             </fieldset>
          <p id="username2"></p>
         </div>
     </div>
-    <script src="canvas.js" type="text/javascript" charset="UTF-8"></script>
 </body>
 </html>

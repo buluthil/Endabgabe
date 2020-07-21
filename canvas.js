@@ -3,10 +3,11 @@ window.addEventListener("load", start);
 let canvas = document.querySelector("#canvas");
 let crc2 = canvas.getContext("2d");
 let malen = false;
-let checkUsername = false;
+let pensilThickness = 10;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight / 2;
+crc2.strokeStyle = "Black";
 function start(_event) {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight / 2;
     canvas.addEventListener("mousedown", startDrawing);
     canvas.addEventListener("mousemove", zeichnen);
     canvas.addEventListener("mouseup", stopDrawing);
@@ -22,12 +23,24 @@ function start(_event) {
     savecanvasbutton.addEventListener("click", savePicture);
     let circle = document.querySelector("button#drawCircle");
     circle.addEventListener("click", drawCircle);
+    let pensilthickness = document.querySelector("input#pensilThickness");
+    pensilthickness.addEventListener("input", changeThickness);
     username();
 }
-function drawCircle() {
+function changeThickness(_event) {
+    let slider = document.getElementById("pensilThickness");
+    pensilThickness = parseFloat(slider.value);
+    crc2.lineWidth = pensilThickness;
+    return pensilThickness;
+}
+function drawCircle(_event) {
+    let x = canvas.width / 2;
+    let y = canvas.height / 2;
+    let radius = 100;
     crc2.beginPath();
-    crc2.arc(100, 100, 50, 0, Math.PI * 2, false);
+    crc2.arc(x, y, radius, 0, Math.PI * 2, false);
     crc2.stroke();
+    crc2.beginPath();
 }
 function backgroundColor() {
     let backgroundcolor = document.querySelector("select#backgroundColor");
@@ -35,20 +48,24 @@ function backgroundColor() {
 }
 function username() {
     let user = prompt("Please enter your username:", "Username");
-    if (checkUsername == false) {
-        checkUsername = true;
-        document.getElementById("username1").innerHTML = //Issue Posten: Warum ist document possibly 0?
+    if (user == null) {
+        user = "User";
+        document.getElementById("username1").innerHTML =
             "Zauberbild " + user;
-        document.getElementById("username2").innerHTML = //Issue Posten: Warum ist document possibly 0?
+        document.getElementById("username2").innerHTML =
             "Welcome " + user + " !";
     }
     else {
-        console.log("what happened");
+        document.getElementById("username1").innerHTML =
+            "Zauberbild " + user;
+        document.getElementById("username2").innerHTML =
+            "Welcome " + user + " !";
     }
 }
 function pensilColor(_event) {
     let pensilcolor = document.querySelector("select#pensilColor");
     crc2.strokeStyle = pensilcolor.value;
+    return crc2.strokeStyle; // Color changes back to black after changing canvas size
 }
 function startDrawing(_event) {
     malen = true;
@@ -63,9 +80,9 @@ function zeichnen(_event) {
         console.log("Nicht am Zeichnen");
     }
     else {
-        let spacingY = _event.clientY / 100 * 82; //Korrektur der Mausposition
-        let spacingX = _event.clientX;
-        crc2.lineWidth = 10;
+        let spacingY = _event.offsetY;
+        let spacingX = _event.offsetX;
+        crc2.lineWidth = pensilThickness;
         crc2.lineCap = "round";
         crc2.lineTo(spacingX, spacingY);
         crc2.stroke();
@@ -76,8 +93,7 @@ function zeichnen(_event) {
 function clearCanvas() {
     let confirmation = confirm("Do you really want to delete your picture?");
     if (confirmation == true) {
-        canvas.width = window.innerWidth;
-        canvas.height = 500;
+        crc2.clearRect(0, 0, canvas.width, canvas.height);
     }
     else {
         alert("Your picture hasn't been deleted");
@@ -89,16 +105,20 @@ function canvasSize() {
         case ("small"):
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight / 3;
+            crc2.strokeStyle;
             break;
         case ("medium"):
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight / 2;
+            crc2.strokeStyle;
             break;
         case ("large"):
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight / 1.5;
+            crc2.strokeStyle;
             break;
     }
+    return canvas.height;
 }
 function savePicture() {
     let confirmation = confirm("Do you really want to save your picture?");
