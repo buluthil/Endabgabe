@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesheet.css" type="text/css" media="screen" />
     <link href="https://fonts.googleapis.com/?cssfamily=Roboto:400,900" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/897a616a3a.js" crossorigin="anonymous"></script>
     <script src="canvas.js" type="text/javascript" charset="UTF-8" async></script>
     <script src="animation.js" type="text/javascript" charset="UTF-8" async></script>
     <script src="tools.js" type="text/javascript" charset="UTF-8" async></script>
@@ -17,12 +18,12 @@
         <h1 id="username1">Zauberbild</h1>
         <canvas id="canvas"></canvas>
         <div id="buttonsAndtools">
-            <button type="button" id="clearCanvas">Clear Canvas</button>
-            <button type="button" id="savePicture">Save Picture</button>
-            <button type="button" id="paint">Paint</button>
-            <button type="button" id="eraser">Eraser</button>
-            <button type="button" id="drawCircle">Draw Circle</button>
-            <fieldset>
+            <button type="button" class="fa fa-paint-brush fa-5x" aria-hidden="true" id="paint"></button>
+            <button type="button" class="fa fa-eraser fa-5x" aria-hidden="true" id="eraser"></button>
+            <button type="button" class="fa fa-circle-o fa-5x" aria-hidden="true" id="drawCircle"></button>
+            <button type="button" class="fa fa-trash-o fa-5x" aria-hidden="true" id="clearCanvas"></button>
+            <button type="button" class="far fa-save fa-5x" aria-hidden="true" id="savePicture"></button>
+            <fieldset id="pensilFieldset">
                 <legend>Pensil Color:</legend>
                 <select name="color" id="pensilColor">
                 <option value="Black">Black</option>
