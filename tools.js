@@ -78,9 +78,12 @@ var Endabgabe;
     }
     Endabgabe.savePicture = savePicture;
     function drawCircle() {
-        let mycircle = new Endabgabe.Circle(Endabgabe.canvaswidth / 2, Endabgabe.canvasheight / 2, 100, 1);
-        mycircle.draw();
+        document.getElementById("canvas").addEventListener("click", drawCircle2);
     }
     Endabgabe.drawCircle = drawCircle;
+    function drawCircle2(_event) {
+        let mycircle = new Endabgabe.Circle(_event.offsetX, _event.offsetY, 100, 1);
+        mycircle.draw();
+    }
 })(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=tools.js.map

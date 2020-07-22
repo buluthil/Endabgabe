@@ -79,7 +79,11 @@ namespace Endabgabe {
     }
 
     export function drawCircle(): void {
-        let mycircle = new Circle (canvaswidth / 2, canvasheight / 2, 100, 1);
+        document.getElementById("canvas")!.addEventListener("click", drawCircle2);
+    }
+
+    function drawCircle2(_event: MouseEvent): void {
+        let mycircle = new Circle (_event.offsetX, _event.offsetY, 100, 1);
         mycircle.draw();
     }
 }
