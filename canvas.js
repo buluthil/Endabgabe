@@ -9,6 +9,7 @@ var Endabgabe;
     Endabgabe.canvaswidth = Endabgabe.canvas.width = window.innerWidth;
     Endabgabe.canvasheight = Endabgabe.canvas.height = window.innerHeight / 2;
     Endabgabe.eraser = false;
+    Endabgabe.radius = 100;
     Endabgabe.crc2.strokeStyle = "Black";
     function start(_event) {
         let canvassize = document.querySelector("select#canvasSize");
@@ -29,7 +30,10 @@ var Endabgabe;
         circle.addEventListener("click", Endabgabe.drawCircle);
         let pensilthickness = document.querySelector("input#pensilThickness");
         pensilthickness.addEventListener("input", Endabgabe.changeThickness);
+        let objectSize = document.querySelector("input#objectSize");
+        objectSize.addEventListener("input", Endabgabe.changeSize);
         username();
+        //window.setInterval(update, 20);
     }
     function username() {
         let user = prompt("Please enter your username:", "Username");
@@ -46,6 +50,12 @@ var Endabgabe;
             document.getElementById("username2").innerHTML =
                 "Welcome " + user + " !";
         }
+        Endabgabe.crc2.font = "10rem Arial";
+        Endabgabe.crc2.textAlign = "center";
+        Endabgabe.crc2.strokeText(user, Endabgabe.canvaswidth / 2, Endabgabe.canvasheight / 2);
     }
+    //function update(): void {
+    //    crc2.clearRect(0, 0, canvaswidth, canvasheight);
+    //}
 })(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=canvas.js.map

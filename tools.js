@@ -11,6 +11,7 @@ var Endabgabe;
         document.getElementById("canvas").removeEventListener("mousedown", startErasing);
         document.getElementById("canvas").removeEventListener("mousemove", erase);
         document.getElementById("canvas").removeEventListener("mouseup", stopErasing);
+        document.getElementById("canvas").removeEventListener("click", drawCircle2);
         Endabgabe.malen = true;
         zeichnen(_event);
     }
@@ -27,16 +28,18 @@ var Endabgabe;
             let spacingX = _event.offsetX;
             Endabgabe.crc2.lineWidth = Endabgabe.pensilThickness;
             Endabgabe.crc2.lineCap = "round";
+            console.log(_event.offsetX, _event.offsetY);
             Endabgabe.crc2.lineTo(spacingX, spacingY);
             Endabgabe.crc2.stroke();
             Endabgabe.crc2.beginPath();
             Endabgabe.crc2.moveTo(spacingX, spacingY);
         }
     }
-    function erasing(_event) {
+    function erasing() {
         document.getElementById("canvas").removeEventListener("mousedown", startDrawing);
         document.getElementById("canvas").removeEventListener("mousemove", zeichnen);
         document.getElementById("canvas").removeEventListener("mouseup", stopDrawing);
+        document.getElementById("canvas").removeEventListener("click", drawCircle2);
         document.getElementById("canvas").addEventListener("mousedown", startErasing);
         document.getElementById("canvas").addEventListener("mousemove", erase);
         document.getElementById("canvas").addEventListener("mouseup", stopErasing);
@@ -51,7 +54,7 @@ var Endabgabe;
             console.log("Nicht am Radieren");
         }
         else {
-            Endabgabe.crc2.clearRect(_event.offsetX, _event.offsetY, 50, 50);
+            Endabgabe.crc2.clearRect(_event.offsetX - 25, _event.offsetY - 25, 50, 50);
         }
     }
     function stopErasing() {
@@ -78,11 +81,18 @@ var Endabgabe;
     }
     Endabgabe.savePicture = savePicture;
     function drawCircle() {
+        document.getElementById("canvas").removeEventListener("mousedown", startDrawing);
+        document.getElementById("canvas").removeEventListener("mousemove", zeichnen);
+        document.getElementById("canvas").removeEventListener("mouseup", stopDrawing);
+        document.getElementById("canvas").removeEventListener("mousedown", startErasing);
+        document.getElementById("canvas").removeEventListener("mousemove", erase);
+        document.getElementById("canvas").removeEventListener("mouseup", stopErasing);
         document.getElementById("canvas").addEventListener("click", drawCircle2);
     }
     Endabgabe.drawCircle = drawCircle;
     function drawCircle2(_event) {
-        let mycircle = new Endabgabe.Circle(_event.offsetX, _event.offsetY, 100, 1);
+        Endabgabe.crc2.lineWidth = Endabgabe.pensilThickness;
+        let mycircle = new Endabgabe.Circle(_event, Endabgabe.radius);
         mycircle.draw();
     }
 })(Endabgabe || (Endabgabe = {}));

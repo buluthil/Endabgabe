@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/?cssfamily=Roboto:400,900" rel="stylesheet">
     <script src="https://kit.fontawesome.com/897a616a3a.js" crossorigin="anonymous"></script>
     <script src="canvas.js" type="text/javascript" charset="UTF-8" async></script>
-    <script src="animation.js" type="text/javascript" charset="UTF-8" async></script>
+    <script src="vector.js" type="text/javascript" charset="UTF-8" async></script>
     <script src="tools.js" type="text/javascript" charset="UTF-8" async></script>
     <script src="customisation.js" type="text/javascript" charset="UTF-8" async></script>
 
@@ -38,11 +38,21 @@
             </fieldset>
             <fieldset>
                 <legend>Pensil Thickness</legend>
-                <span id="slider">
+                <span class="slider">
                     <span>
                         1 Px
                         <input type="range" name="thickness" id="pensilThickness" min="1" max="50" step="1" value="1">
                         50 Px
+                    </span>
+                </span>
+            </fieldset>
+            <fieldset>
+                <legend>Object Size</legend>
+                <span class="slider">
+                    <span>
+                        10 Px
+                        <input type="range" name="thickness" id="objectSize" min="10" max="500" step="10" value="10">
+                        500 Px
                     </span>
                 </span>
             </fieldset>

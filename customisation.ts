@@ -7,6 +7,12 @@ namespace Endabgabe {
         return pensilThickness;
     }
 
+    export function changeSize() {
+        let slider = <HTMLInputElement>document.getElementById("objectSize")!;
+        radius = parseFloat(slider.value);
+        return radius;
+    }
+
     export function backgroundColor() {
         let backgroundcolor: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#backgroundColor")
         canvas.style.background = backgroundcolor.value;

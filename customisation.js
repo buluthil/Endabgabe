@@ -8,6 +8,12 @@ var Endabgabe;
         return Endabgabe.pensilThickness;
     }
     Endabgabe.changeThickness = changeThickness;
+    function changeSize() {
+        let slider = document.getElementById("objectSize");
+        Endabgabe.radius = parseFloat(slider.value);
+        return Endabgabe.radius;
+    }
+    Endabgabe.changeSize = changeSize;
     function backgroundColor() {
         let backgroundcolor = document.querySelector("select#backgroundColor");
         Endabgabe.canvas.style.background = backgroundcolor.value;

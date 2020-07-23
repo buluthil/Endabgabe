@@ -9,6 +9,7 @@ namespace Endabgabe {
     export let canvaswidth = canvas.width = window.innerWidth;
     export let canvasheight = canvas.height = window.innerHeight / 2;
     export let eraser: boolean = false;
+    export let radius: number = 100;
 
     crc2.strokeStyle = "Black";
 
@@ -31,7 +32,10 @@ namespace Endabgabe {
         circle.addEventListener("click", drawCircle);
         let pensilthickness: HTMLInputElement = <HTMLInputElement>document.querySelector("input#pensilThickness");
         pensilthickness.addEventListener("input", changeThickness);
+        let objectSize: HTMLInputElement = <HTMLInputElement>document.querySelector("input#objectSize");
+        objectSize.addEventListener("input", changeSize);
         username();
+        //window.setInterval(update, 20);
     }
 
     function username() {
@@ -48,5 +52,12 @@ namespace Endabgabe {
             document.getElementById("username2")!.innerHTML = 
             "Welcome " + user + " !";
         }
+        crc2.font = "10rem Arial";
+        crc2.textAlign = "center";
+        crc2.strokeText(user, canvaswidth / 2, canvasheight / 2);
     }
+
+    //function update(): void {
+    //    crc2.clearRect(0, 0, canvaswidth, canvasheight);
+    //}
 }
