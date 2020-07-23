@@ -93,7 +93,25 @@ var Endabgabe;
     function drawCircle2(_event) {
         Endabgabe.crc2.lineWidth = Endabgabe.pensilThickness;
         let mycircle = new Endabgabe.Circle(_event, Endabgabe.radius);
-        mycircle.draw();
+        window.setInterval(update, 20, mycircle);
+    }
+    function update(_mycircle) {
+        Endabgabe.crc2.clearRect(0, 0, Endabgabe.canvaswidth, Endabgabe.canvasheight);
+        _mycircle.move(1 / 10);
+        _mycircle.draw();
+        if (_mycircle.position.x + _mycircle.size > Endabgabe.canvaswidth) {
+            _mycircle.velocity.x = -_mycircle.velocity.x;
+        }
+        if (_mycircle.position.x - _mycircle.size < 0) {
+            _mycircle.velocity.x = -_mycircle.velocity.x;
+        }
+        if (_mycircle.position.y - _mycircle.size < 0) {
+            _mycircle.velocity.y = -_mycircle.velocity.y;
+        }
+        if (_mycircle.position.y + _mycircle.size > Endabgabe.canvasheight) {
+            _mycircle.velocity.y = -_mycircle.velocity.y;
+        }
+        Endabgabe.interval = true;
     }
 })(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=tools.js.map

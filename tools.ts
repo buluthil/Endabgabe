@@ -94,6 +94,26 @@ namespace Endabgabe {
     function drawCircle2(_event: MouseEvent): void {
         crc2.lineWidth = pensilThickness;
         let mycircle: Circle = new Circle (_event, radius);
-        mycircle.draw();
+        if (interval == false) {
+            window.setInterval(update, 20, mycircle);
+        }
+    }
+
+    function update(_mycircle: Circle) {
+        crc2.clearRect(0, 0, canvaswidth, canvasheight);
+        _mycircle.move(1/10);
+        _mycircle.draw();
+        if (_mycircle.position.x + _mycircle.size > canvaswidth) {
+            _mycircle.velocity.x = -_mycircle.velocity.x;
+        }
+        if (_mycircle.position.x - _mycircle.size < 0) {
+            _mycircle.velocity.x = -_mycircle.velocity.x;
+        }
+        if (_mycircle.position.y - _mycircle.size < 0) {
+            _mycircle.velocity.y = -_mycircle.velocity.y;
+        }
+        if (_mycircle.position.y + _mycircle.size > canvasheight) {
+            _mycircle.velocity.y = -_mycircle.velocity.y;
+        }
     }
 }

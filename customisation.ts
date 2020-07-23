@@ -10,6 +10,7 @@ namespace Endabgabe {
     export function changeSize() {
         let slider = <HTMLInputElement>document.getElementById("objectSize")!;
         radius = parseFloat(slider.value);
+        console.log(slider.value);
         return radius;
     }
 

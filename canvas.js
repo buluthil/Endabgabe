@@ -10,6 +10,7 @@ var Endabgabe;
     Endabgabe.canvasheight = Endabgabe.canvas.height = window.innerHeight / 2;
     Endabgabe.eraser = false;
     Endabgabe.radius = 100;
+    Endabgabe.interval = false;
     Endabgabe.crc2.strokeStyle = "Black";
     function start(_event) {
         let canvassize = document.querySelector("select#canvasSize");

@@ -11,6 +11,7 @@ var Endabgabe;
     function changeSize() {
         let slider = document.getElementById("objectSize");
         Endabgabe.radius = parseFloat(slider.value);
+        console.log(slider.value);
         return Endabgabe.radius;
     }
     Endabgabe.changeSize = changeSize;

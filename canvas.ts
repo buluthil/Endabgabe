@@ -10,6 +10,7 @@ namespace Endabgabe {
     export let canvasheight = canvas.height = window.innerHeight / 2;
     export let eraser: boolean = false;
     export let radius: number = 100;
+    export let interval: boolean = false
 
     crc2.strokeStyle = "Black";
 

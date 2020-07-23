@@ -3,8 +3,11 @@ var Endabgabe;
 (function (Endabgabe) {
     class Circle {
         constructor(_event, _size) {
+            this.set(_event, _size);
+        }
+        set(_event, _size) {
             this.position = new Endabgabe.Vector(_event.offsetX, _event.offsetY);
-            this.velocity = new Endabgabe.Vector(1, 1);
+            this.velocity = new Endabgabe.Vector(5, 5);
             this.size = _size;
         }
         move(_timeslice) {
