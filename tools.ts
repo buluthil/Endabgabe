@@ -29,10 +29,10 @@ namespace Endabgabe {
                 let spacingX: number = _event.offsetX;
                 crc2.lineWidth = pensilThickness;
                 crc2.lineCap = "round";
-                crc2.moveTo(spacingX, spacingY);
                 crc2.lineTo(spacingX, spacingY);
                 crc2.stroke();
                 crc2.beginPath();
+                crc2.moveTo(spacingX, spacingY);
             }
     }
 

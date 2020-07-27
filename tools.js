@@ -29,10 +29,10 @@ var Endabgabe;
             let spacingX = _event.offsetX;
             Endabgabe.crc2.lineWidth = Endabgabe.pensilThickness;
             Endabgabe.crc2.lineCap = "round";
-            Endabgabe.crc2.moveTo(spacingX, spacingY);
             Endabgabe.crc2.lineTo(spacingX, spacingY);
             Endabgabe.crc2.stroke();
             Endabgabe.crc2.beginPath();
+            Endabgabe.crc2.moveTo(spacingX, spacingY);
         }
     }
     function erasing() {
