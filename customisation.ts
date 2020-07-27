@@ -10,13 +10,14 @@ namespace Endabgabe {
     export function changeSize() {
         let slider = <HTMLInputElement>document.getElementById("objectSize")!;
         radius = parseFloat(slider.value);
-        console.log(slider.value);
+        crc2.lineWidth = pensilThickness;
         return radius;
     }
 
     export function backgroundColor() {
         let backgroundcolor: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#backgroundColor")
         canvas.style.background = backgroundcolor.value;
+        crc2.lineWidth = pensilThickness;
     }
 
     export function pensilColor(_event: Event) {

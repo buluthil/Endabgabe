@@ -1,14 +1,13 @@
 "use strict";
 var Endabgabe;
 (function (Endabgabe) {
-    class Circle {
-        constructor(_event, _size, _velocity) {
-            // super(_event, _size);
-            this.set(_event, _size, _velocity);
+    class Moveable {
+        constructor(_event, _size) {
+            this.set(_event, _size);
         }
-        set(_event, _size, _velocity) {
+        set(_event, _size) {
             this.position = new Endabgabe.Vector(_event.offsetX, _event.offsetY);
-            this.velocity = new Endabgabe.Vector(Math.floor(Math.random() * 20) + 1, Math.floor(Math.random() * 20) + 1);
+            this.velocity = new Endabgabe.Vector(5, 5);
             this.size = _size;
         }
         move(_timeslice) {
@@ -28,13 +27,7 @@ var Endabgabe;
                 this.velocity.y = -this.velocity.y;
             }
         }
-        draw() {
-            Endabgabe.crc2.beginPath();
-            Endabgabe.crc2.arc(this.position.x, this.position.y, this.size, 0, Math.PI * 2, false);
-            Endabgabe.crc2.stroke();
-            Endabgabe.crc2.closePath();
-        }
     }
-    Endabgabe.Circle = Circle;
+    Endabgabe.Moveable = Moveable;
 })(Endabgabe || (Endabgabe = {}));
-//# sourceMappingURL=circle.js.map
+//# sourceMappingURL=moveable.js.map

@@ -1,22 +1,21 @@
 namespace Endabgabe {
 
-    export class Circle { //extends Moveable
+    export class Moveable {
 
         position: Vector;
         velocity: Vector;
-        size: number;
-
-        constructor(_event: MouseEvent, _size: number, _velocity: number) {
-            // super(_event, _size);
-            this.set(_event, _size, _velocity)
+        size: number
+    
+        constructor(_event: MouseEvent, _size: number) {
+        this.set(_event, _size);
         }
-
-        set(_event: MouseEvent, _size: number, _velocity: number) {
+    
+        set(_event: MouseEvent, _size: number): void {
             this.position = new Vector(_event.offsetX, _event.offsetY);
-            this.velocity = new Vector(Math.floor(Math.random()* 20) + 1, Math.floor(Math.random()* 20) + 1);
+            this.velocity = new Vector(5, 5);
             this.size = _size;
         }
-
+    
         move(_timeslice: number): void {
             let offset: Vector = this.velocity.copy(); // Offset == eine Kopie von Velocity;
             offset.scale(_timeslice);
@@ -35,12 +34,5 @@ namespace Endabgabe {
                 this.velocity.y = -this.velocity.y;
             }
         }
-
-        draw(): void {
-            crc2.beginPath();
-            crc2.arc(this.position.x, this.position.y, this.size, 0 ,Math.PI*2, false);
-            crc2.stroke();
-            crc2.closePath();
-        }
-    }
+    }    
 }

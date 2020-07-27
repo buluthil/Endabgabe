@@ -22,5 +22,9 @@ namespace Endabgabe {
             this.x += _addend.x;
             this.y += _addend.y;
         }
+
+        copy(): Vector {
+            return new Vector (this.x, this.y);
+        }
     }
 }

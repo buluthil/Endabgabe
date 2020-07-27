@@ -10,6 +10,7 @@ namespace Endabgabe {
         document.getElementById("canvas")!.removeEventListener("mousedown", startErasing);
         document.getElementById("canvas")!.removeEventListener("mousemove", erase);
         document.getElementById("canvas")!.removeEventListener("mouseup", stopErasing);
+        document.getElementById("canvas")!.removeEventListener("click", deleteObject2);
         document.getElementById("canvas")!.removeEventListener("click", drawCircle2);
         malen = true;
         zeichnen(_event);
@@ -28,11 +29,10 @@ namespace Endabgabe {
                 let spacingX: number = _event.offsetX;
                 crc2.lineWidth = pensilThickness;
                 crc2.lineCap = "round";
-                console.log(_event.offsetX, _event.offsetY)
+                crc2.moveTo(spacingX, spacingY);
                 crc2.lineTo(spacingX, spacingY);
                 crc2.stroke();
                 crc2.beginPath();
-                crc2.moveTo(spacingX, spacingY);
             }
     }
 
@@ -41,6 +41,7 @@ namespace Endabgabe {
         document.getElementById("canvas")!.removeEventListener("mousemove", zeichnen);
         document.getElementById("canvas")!.removeEventListener("mouseup", stopDrawing);
         document.getElementById("canvas")!.removeEventListener("click", drawCircle2);
+        document.getElementById("canvas")!.removeEventListener("click", deleteObject2);
         document.getElementById("canvas")!.addEventListener("mousedown", startErasing);
         document.getElementById("canvas")!.addEventListener("mousemove", erase);
         document.getElementById("canvas")!.addEventListener("mouseup", stopErasing);
@@ -63,10 +64,13 @@ namespace Endabgabe {
         eraser = false;
     }
 
-    export function clearCanvas(): void {
+    export function clearCanvas() {
         let confirmation = confirm("Do you really want to delete your picture?");
         if (confirmation == true) {
             crc2.clearRect(0, 0, canvaswidth, canvasheight);
+            for (let i: number = 0; i < circles.length; i++) {
+                circles.pop();
+            }
         } else {
             alert("Your picture hasn't been deleted");
         }
@@ -88,32 +92,70 @@ namespace Endabgabe {
         document.getElementById("canvas")!.removeEventListener("mousedown", startErasing);
         document.getElementById("canvas")!.removeEventListener("mousemove", erase);
         document.getElementById("canvas")!.removeEventListener("mouseup", stopErasing);
+        document.getElementById("canvas")!.removeEventListener("click", deleteObject2);
         document.getElementById("canvas")!.addEventListener("click", drawCircle2);
     }
 
     function drawCircle2(_event: MouseEvent): void {
-        crc2.lineWidth = pensilThickness;
-        let mycircle: Circle = new Circle (_event, radius);
-        if (interval == false) {
-            window.setInterval(update, 20, mycircle);
+        let mycircle: Circle = new Circle (_event, radius, Math.floor(Math.random() * 20));
+        mycircle.draw();
+        circles.push(mycircle);
+    }
+
+    export function startAnimation(): void {
+        if (counter == 0) {
+            counter++;
+            animation = true;
+            update();
+        } else {
+            return;
         }
     }
 
-    function update(_mycircle: Circle) {
-        crc2.clearRect(0, 0, canvaswidth, canvasheight);
-        _mycircle.move(1/10);
-        _mycircle.draw();
-        if (_mycircle.position.x + _mycircle.size > canvaswidth) {
-            _mycircle.velocity.x = -_mycircle.velocity.x;
+    export function stopAnimation(): void {
+        if (counter == 1) {
+            counter--;
+            animation = false;
+        } else {
+            return;
         }
-        if (_mycircle.position.x - _mycircle.size < 0) {
-            _mycircle.velocity.x = -_mycircle.velocity.x;
+    }
+
+    export function update(): void {
+        let request = requestAnimationFrame(update);
+        if (animation == true) {
+            crc2.clearRect(0, 0, canvaswidth, canvasheight);
+        for (let i: number = 0; i < circles.length; i++) {
+            circles[i].move(1/5);
+            circles[i].draw();
         }
-        if (_mycircle.position.y - _mycircle.size < 0) {
-            _mycircle.velocity.y = -_mycircle.velocity.y;
+        } else {
+            cancelAnimationFrame(request);
+            console.log("stopped animating");
         }
-        if (_mycircle.position.y + _mycircle.size > canvasheight) {
-            _mycircle.velocity.y = -_mycircle.velocity.y;
+    }
+
+    export function deleteObject(): void {
+        document.getElementById("canvas")!.removeEventListener("mousedown", startDrawing);
+        document.getElementById("canvas")!.removeEventListener("mousemove", zeichnen);
+        document.getElementById("canvas")!.removeEventListener("mouseup", stopDrawing);
+        document.getElementById("canvas")!.removeEventListener("mousedown", startErasing);
+        document.getElementById("canvas")!.removeEventListener("mousemove", erase);
+        document.getElementById("canvas")!.removeEventListener("mouseup", stopErasing);
+        document.getElementById("canvas")!.removeEventListener("click", drawCircle2);
+        document.getElementById("canvas")!.addEventListener("click", deleteObject2)
+    }
+
+    function deleteObject2(_event: MouseEvent): void {
+        console.log("working?");
+        for (let i: number = 0; i < circles.length; i++) {
+            if (0 <= _event.offsetX - circles[i].position.x && _event.offsetX - circles[i].position.x <= Math.PI * Math.pow(circles[i].size, 2) 
+            && 0 <= _event.offsetY - circles[i].position.y && _event.offsetY - circles[i].position.y <= Math.PI * Math.pow(circles[i].size, 2)) {
+                circles.splice(i, 1);
+                console.log("deleted");
+            } else {
+                console.log("not clicked");
+            }
         }
     }
 }

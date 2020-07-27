@@ -1,6 +1,6 @@
 namespace Endabgabe {
     
-    window.addEventListener("load", start);
+    window.addEventListener("load", init);
 
     export let canvas: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("#canvas");
     export let crc2: CanvasRenderingContext2D = <CanvasRenderingContext2D>canvas.getContext("2d");
@@ -11,10 +11,16 @@ namespace Endabgabe {
     export let eraser: boolean = false;
     export let radius: number = 100;
     export let interval: boolean = false
-
+    export let animation: boolean = false;
+    export let counter: number = 0;
+    export let circles: Circle[] = [];
     crc2.strokeStyle = "Black";
 
-    function start(_event: Event): void {
+    function init(_event: Event): void {
+        let pensilthickness: HTMLInputElement = <HTMLInputElement>document.querySelector("input#pensilThickness");
+        pensilthickness.addEventListener("input", changeThickness);
+        let objectSize: HTMLInputElement = <HTMLInputElement>document.querySelector("input#objectSize");
+        objectSize.addEventListener("input", changeSize);
         let canvassize: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#canvasSize");
         canvassize.addEventListener("change", canvasSize);
         let pensilcolor: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#pensilColor");
@@ -31,12 +37,13 @@ namespace Endabgabe {
         eraser.addEventListener("click", erasing);
         let circle: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#drawCircle");
         circle.addEventListener("click", drawCircle);
-        let pensilthickness: HTMLInputElement = <HTMLInputElement>document.querySelector("input#pensilThickness");
-        pensilthickness.addEventListener("input", changeThickness);
-        let objectSize: HTMLInputElement = <HTMLInputElement>document.querySelector("input#objectSize");
-        objectSize.addEventListener("input", changeSize);
+        let startanimation: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#startAnimation");
+        startanimation.addEventListener("click", startAnimation);
+        let stopanimation: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#stopAnimation");
+        stopanimation.addEventListener("click", stopAnimation);
+        let deleteobject: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#deleteObject");
+        deleteobject.addEventListener("click", deleteObject);
         username();
-        //window.setInterval(update, 20);
     }
 
     function username() {
@@ -57,8 +64,4 @@ namespace Endabgabe {
         crc2.textAlign = "center";
         crc2.strokeText(user, canvaswidth / 2, canvasheight / 2);
     }
-
-    //function update(): void {
-    //    crc2.clearRect(0, 0, canvaswidth, canvasheight);
-    //}
 }

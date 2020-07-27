@@ -17,6 +17,9 @@ var Endabgabe;
             this.x += _addend.x;
             this.y += _addend.y;
         }
+        copy() {
+            return new Vector(this.x, this.y);
+        }
     }
     Endabgabe.Vector = Vector;
 })(Endabgabe || (Endabgabe = {}));

@@ -1,7 +1,7 @@
 "use strict";
 var Endabgabe;
 (function (Endabgabe) {
-    window.addEventListener("load", start);
+    window.addEventListener("load", init);
     Endabgabe.canvas = document.querySelector("#canvas");
     Endabgabe.crc2 = Endabgabe.canvas.getContext("2d");
     Endabgabe.malen = false;
@@ -11,8 +11,15 @@ var Endabgabe;
     Endabgabe.eraser = false;
     Endabgabe.radius = 100;
     Endabgabe.interval = false;
+    Endabgabe.animation = false;
+    Endabgabe.counter = 0;
+    Endabgabe.circles = [];
     Endabgabe.crc2.strokeStyle = "Black";
-    function start(_event) {
+    function init(_event) {
+        let pensilthickness = document.querySelector("input#pensilThickness");
+        pensilthickness.addEventListener("input", Endabgabe.changeThickness);
+        let objectSize = document.querySelector("input#objectSize");
+        objectSize.addEventListener("input", Endabgabe.changeSize);
         let canvassize = document.querySelector("select#canvasSize");
         canvassize.addEventListener("change", Endabgabe.canvasSize);
         let pensilcolor = document.querySelector("select#pensilColor");
@@ -29,12 +36,13 @@ var Endabgabe;
         eraser.addEventListener("click", Endabgabe.erasing);
         let circle = document.querySelector("button#drawCircle");
         circle.addEventListener("click", Endabgabe.drawCircle);
-        let pensilthickness = document.querySelector("input#pensilThickness");
-        pensilthickness.addEventListener("input", Endabgabe.changeThickness);
-        let objectSize = document.querySelector("input#objectSize");
-        objectSize.addEventListener("input", Endabgabe.changeSize);
+        let startanimation = document.querySelector("button#startAnimation");
+        startanimation.addEventListener("click", Endabgabe.startAnimation);
+        let stopanimation = document.querySelector("button#stopAnimation");
+        stopanimation.addEventListener("click", Endabgabe.stopAnimation);
+        let deleteobject = document.querySelector("button#deleteObject");
+        deleteobject.addEventListener("click", Endabgabe.deleteObject);
         username();
-        //window.setInterval(update, 20);
     }
     function username() {
         let user = prompt("Please enter your username:", "Username");
@@ -55,8 +63,5 @@ var Endabgabe;
         Endabgabe.crc2.textAlign = "center";
         Endabgabe.crc2.strokeText(user, Endabgabe.canvaswidth / 2, Endabgabe.canvasheight / 2);
     }
-    //function update(): void {
-    //    crc2.clearRect(0, 0, canvaswidth, canvasheight);
-    //}
 })(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=canvas.js.map

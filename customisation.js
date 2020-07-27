@@ -11,13 +11,14 @@ var Endabgabe;
     function changeSize() {
         let slider = document.getElementById("objectSize");
         Endabgabe.radius = parseFloat(slider.value);
-        console.log(slider.value);
+        Endabgabe.crc2.lineWidth = Endabgabe.pensilThickness;
         return Endabgabe.radius;
     }
     Endabgabe.changeSize = changeSize;
     function backgroundColor() {
         let backgroundcolor = document.querySelector("select#backgroundColor");
         Endabgabe.canvas.style.background = backgroundcolor.value;
+        Endabgabe.crc2.lineWidth = Endabgabe.pensilThickness;
     }
     Endabgabe.backgroundColor = backgroundColor;
     function pensilColor(_event) {
