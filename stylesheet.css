@@ -98,3 +98,45 @@ button {
     color: white;
     box-shadow: 0 5px 15px -5px #00000070;
 }
+
+#drawTriangle:hover {
+    border: 2px solid gray;
+    background-color: gray;
+    color: white;
+    box-shadow: 0 5px 15px -5px #00000070;
+}
+
+#moveObject:hover {
+    border: 2px solid gray;
+    background-color: gray;
+    color: white;
+    box-shadow: 0 5px 15px -5px #00000070;
+}
+
+#startAnimation:hover {
+    border: 2px solid gray;
+    background-color: gray;
+    color: white;
+    box-shadow: 0 5px 15px -5px #00000070;
+}
+
+#stopAnimation:hover {
+    border: 2px solid gray;
+    background-color: gray;
+    color: white;
+    box-shadow: 0 5px 15px -5px #00000070;
+}
+
+#restorePic:hover {
+    border: 2px solid gray;
+    background-color: gray;
+    color: white;
+    box-shadow: 0 5px 15px -5px #00000070;
+}
+
+#drawHeart:hover {
+    border: 2px solid gray;
+    background-color: gray;
+    color: white;
+    box-shadow: 0 5px 15px -5px #00000070;
+}

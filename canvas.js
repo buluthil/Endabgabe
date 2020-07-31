@@ -10,10 +10,17 @@ var Endabgabe;
     Endabgabe.canvasheight = Endabgabe.canvas.height = window.innerHeight / 2;
     Endabgabe.eraser = false;
     Endabgabe.radius = 100;
+    Endabgabe.fillobject = false;
     Endabgabe.interval = false;
     Endabgabe.animation = false;
     Endabgabe.counter = 0;
     Endabgabe.circles = [];
+    Endabgabe.hearts = [];
+    Endabgabe.triangles = [];
+    Endabgabe.triangleheight = 200 * Math.cos(Math.PI / 6);
+    Endabgabe.move = false;
+    //export let url: string = "https://zauberbildlukas-server.herokuapp.com/"
+    Endabgabe.url = "http://localhost:5000";
     Endabgabe.crc2.strokeStyle = "Black";
     function init(_event) {
         let pensilthickness = document.querySelector("input#pensilThickness");
@@ -36,12 +43,20 @@ var Endabgabe;
         eraser.addEventListener("click", Endabgabe.erasing);
         let circle = document.querySelector("button#drawCircle");
         circle.addEventListener("click", Endabgabe.drawCircle);
+        let triangle = document.querySelector("button#drawTriangle");
+        triangle.addEventListener("click", Endabgabe.drawTriangle);
+        let heart = document.querySelector("button#drawHeart");
+        heart.addEventListener("click", Endabgabe.drawHeart);
         let startanimation = document.querySelector("button#startAnimation");
         startanimation.addEventListener("click", Endabgabe.startAnimation);
         let stopanimation = document.querySelector("button#stopAnimation");
         stopanimation.addEventListener("click", Endabgabe.stopAnimation);
+        let fill = document.querySelector("button#fillObject");
+        fill.addEventListener("click", Endabgabe.fillObject);
         let deleteobject = document.querySelector("button#deleteObject");
         deleteobject.addEventListener("click", Endabgabe.deleteObject);
+        let moveobject = document.querySelector("button#moveObject");
+        moveobject.addEventListener("click", Endabgabe.moveObject);
         username();
     }
     function username() {

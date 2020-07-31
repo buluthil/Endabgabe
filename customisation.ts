@@ -2,28 +2,38 @@ namespace Endabgabe {
 
     export function changeThickness(_event: Event) {
         let slider = <HTMLInputElement>document.getElementById("pensilThickness")!;
-        pensilThickness = parseFloat(slider.value)
+        pensilThickness = parseFloat(slider.value);
         crc2.lineWidth = pensilThickness;
-        return pensilThickness;
+        crc2.save();
     }
 
     export function changeSize() {
         let slider = <HTMLInputElement>document.getElementById("objectSize")!;
         radius = parseFloat(slider.value);
+        //trianglesize = parseFloat(slider.value);
         crc2.lineWidth = pensilThickness;
-        return radius;
+        crc2.save();
     }
 
     export function backgroundColor() {
-        let backgroundcolor: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#backgroundColor")
+        let backgroundcolor: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#backgroundColor");
         canvas.style.background = backgroundcolor.value;
         crc2.lineWidth = pensilThickness;
+        crc2.save();
     }
 
-    export function pensilColor(_event: Event) {
-        let pensilcolor: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#pensilColor")
+    export function pensilColor() {
+        let pensilcolor: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#pensilColor");
         crc2.strokeStyle = pensilcolor.value;
-        return crc2.strokeStyle; // Color changes back to black after changing canvas size
+        crc2.save();
+    }
+
+    export function fillObject(): void {
+        let color = <HTMLSelectElement>document.getElementById("pensilColor");
+        fillcolor = color.value
+        crc2.fillStyle = fillcolor;
+        crc2.fill();
+        crc2.save();
     }
 
     export function canvasSize(): number { 

@@ -1,6 +1,6 @@
 namespace Endabgabe {
 
-    export class Circle { //extends Moveable
+    export class Circle { 
 
         position: Vector;
         velocity: Vector;

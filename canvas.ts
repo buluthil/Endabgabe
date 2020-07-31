@@ -10,10 +10,19 @@ namespace Endabgabe {
     export let canvasheight = canvas.height = window.innerHeight / 2;
     export let eraser: boolean = false;
     export let radius: number = 100;
+    export let fillcolor: string;
+    export let fillobject: boolean = false;
     export let interval: boolean = false
     export let animation: boolean = false;
     export let counter: number = 0;
     export let circles: Circle[] = [];
+    export let hearts: Heart[] = [];
+    export let triangles: Triangle[] = [];
+    export let triangleheight = 200 * Math.cos(Math.PI / 6);
+    export let move: boolean = false;
+    export let form: HTMLFormElement;
+    //export let url: string = "https://zauberbildlukas-server.herokuapp.com/"
+    export let url: string = "http://localhost:5000";
     crc2.strokeStyle = "Black";
 
     function init(_event: Event): void {
@@ -37,12 +46,20 @@ namespace Endabgabe {
         eraser.addEventListener("click", erasing);
         let circle: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#drawCircle");
         circle.addEventListener("click", drawCircle);
+        let triangle: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#drawTriangle");
+        triangle.addEventListener("click", drawTriangle);
+        let heart: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#drawHeart");
+        heart.addEventListener("click", drawHeart);
         let startanimation: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#startAnimation");
         startanimation.addEventListener("click", startAnimation);
         let stopanimation: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#stopAnimation");
         stopanimation.addEventListener("click", stopAnimation);
+        let fill: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#fillObject");
+        fill.addEventListener("click", fillObject);
         let deleteobject: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#deleteObject");
         deleteobject.addEventListener("click", deleteObject);
+        let moveobject: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#moveObject");
+        moveobject.addEventListener("click", moveObject);
         username();
     }
 

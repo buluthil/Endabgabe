@@ -1,24 +1,19 @@
 {
-  "name": "tastetherainbow",
-  "version": "1.0.0",
-  "description": "",
-  "main": "",
-  "dependencies": {
-    "@types/mongodb": "^3.5.20",
-    "mongodb": "^3.5.8"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "start": "node L07_Database/Server/Server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/schneine/schneine.github.io-EIA2.git"
-  },
-  "author": "mr.x",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/schneine/schneine.github.io-EIA2/issues"
-  },
-  "homepage": "https://github.com/schneine/schneine.github.io-EIA2#readme"
+	"name": "zauberbildlukas",
+	"version": "1.0.0",
+	"description": "Minimal server just bouncing the URL",
+	"author": "Lukas",
+	"main": "Server.js",
+	"scripts": {
+		"start": "node server.js"
+	},
+	"engines": {
+		"node": "8.11.3",
+		"mongodb": "^3.2.5"
+	},
+	"dependencies": {
+		"@types/mongodb": "^3.1.27",
+		"@types/node": "^11.15.20",
+		"mongodb": "^3.2.5"
+	}
 }
