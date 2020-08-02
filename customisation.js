@@ -15,13 +15,16 @@ var Endabgabe;
     Endabgabe.changeSize = changeSize;
     function backgroundColor() {
         let backgroundcolor = document.querySelector("select#backgroundColor");
-        Endabgabe.colorofpensil = backgroundcolor.value;
-        Endabgabe.canvas.style.background = Endabgabe.colorofpensil;
+        Endabgabe.canvasbackground = backgroundcolor.value;
+        Endabgabe.canvas.style.background = Endabgabe.canvasbackground;
+        return Endabgabe.canvasbackground;
     }
     Endabgabe.backgroundColor = backgroundColor;
     function pensilColor() {
         let pensilcolor = document.querySelector("select#pensilColor");
         Endabgabe.crc2.strokeStyle = pensilcolor.value;
+        Endabgabe.colorofpensil = pensilcolor.value;
+        return Endabgabe.colorofpensil;
     }
     Endabgabe.pensilColor = pensilColor;
     function fillObject() {

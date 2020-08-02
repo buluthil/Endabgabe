@@ -35,7 +35,7 @@ var Endabgabe;
         let height = Math.floor(Endabgabe.canvasheight).toString();
         let pensil = Math.floor(Endabgabe.pensilThickness).toString();
         let pensilcolor = Endabgabe.colorofpensil;
-        canvasInfo.push(width, height, pensil, Endabgabe.canvas.style.background, pensilcolor);
+        canvasInfo.push(width, height, pensil, Endabgabe.canvasbackground, pensilcolor);
         let canvasLook = JSON.stringify(canvasInfo);
         let canvasQuery = new URLSearchParams(canvasLook);
         let info = JSON.stringify(_information);

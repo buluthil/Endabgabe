@@ -1,7 +1,7 @@
 namespace Endabgabe {
 
     export interface PictureProperties {
-        
+
         type: string;
         positionX: number;
         positionY: number;
@@ -43,8 +43,8 @@ namespace Endabgabe {
         let width: string = Math.floor(canvaswidth).toString();
         let height: string = Math.floor(canvasheight).toString();
         let pensil: string = Math.floor(pensilThickness).toString();
-        let pensilcolor: string = colorofpensil
-        canvasInfo.push(width, height, pensil, canvas.style.background, pensilcolor);
+        let pensilcolor: string = colorofpensil;
+        canvasInfo.push(width, height, pensil, canvasbackground, pensilcolor);
 
         let canvasLook: string = JSON.stringify(canvasInfo);
         let canvasQuery: URLSearchParams = new URLSearchParams(canvasLook);

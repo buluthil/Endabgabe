@@ -12,15 +12,18 @@ namespace Endabgabe {
         crc2.lineWidth = pensilThickness;
     }
 
-    export function backgroundColor() {
+    export function backgroundColor(): string {
         let backgroundcolor: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#backgroundColor");
-        colorofpensil = backgroundcolor.value;
-        canvas.style.background = colorofpensil;
+        canvasbackground = backgroundcolor.value;
+        canvas.style.background = canvasbackground;
+        return canvasbackground;
     }
 
-    export function pensilColor() {
+    export function pensilColor(): string {
         let pensilcolor: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#pensilColor");
         crc2.strokeStyle = pensilcolor.value;
+        colorofpensil = pensilcolor.value;
+        return colorofpensil;
     }
 
     export function fillObject(): void {

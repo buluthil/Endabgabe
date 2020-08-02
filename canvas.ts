@@ -7,6 +7,7 @@ namespace Endabgabe {
     export let malen: boolean = false;
     export let pensilThickness: number = 10;
     export let colorofpensil: string;
+    export let canvasbackground: string;
     export let canvaswidth = canvas.width = window.innerWidth;
     export let canvasheight = canvas.height = window.innerHeight / 2;
     export let eraser: boolean = false;
