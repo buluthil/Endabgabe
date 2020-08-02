@@ -63,11 +63,13 @@ namespace Endabgabe {
         deleteobject.addEventListener("click", deleteObject);
         let moveobject: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#moveObject");
         moveobject.addEventListener("click", moveObject);
+        //let savedpics: HTMLInputElement = <HTMLInputElement>document.querySelector("input#savedPics");
+        //savedpics.addEventListener("change", savedPics);
         username();
     }
 
 
-    function getUserName(): string{
+    export function getUserName(): string{
         let user = prompt("Please enter your username:", "Username")
         if (user == null){
             return "";

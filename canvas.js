@@ -58,6 +58,8 @@ var Endabgabe;
         deleteobject.addEventListener("click", Endabgabe.deleteObject);
         let moveobject = document.querySelector("button#moveObject");
         moveobject.addEventListener("click", Endabgabe.moveObject);
+        //let savedpics: HTMLInputElement = <HTMLInputElement>document.querySelector("input#savedPics");
+        //savedpics.addEventListener("change", savedPics);
         username();
     }
     function getUserName() {
@@ -69,6 +71,7 @@ var Endabgabe;
             return user;
         }
     }
+    Endabgabe.getUserName = getUserName;
     function username() {
         if (Endabgabe.user == "") {
             Endabgabe.user = "User";
