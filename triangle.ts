@@ -1,16 +1,13 @@
 namespace Endabgabe {
     
-    export class Triangle {
+    export class Triangle extends Vector {
 
         position: Vector;
         velocity: Vector;
         height: number;
 
-        constructor(_event: MouseEvent,_height: number) {
-            this.set(_event, _height)
-        }
-
-        set(_event: MouseEvent, _height: number) {
+        constructor(_event: MouseEvent, _height: number) {
+            super(_event.offsetX, _event.offsetY);
             this.position = new Vector(_event.offsetX + 200, _event.offsetY - 220);
             this.velocity = new Vector(Math.floor(Math.random()* 20) + 1, Math.floor(Math.random()* 20) + 1);
             this.height = _height;                                                                              // Höhe des Deiecks kann/soll nicht statisch festgelegt werden                                                                
@@ -42,6 +39,11 @@ namespace Endabgabe {
         crc2.lineTo(this.position.x - 200, this.position.y + 300 - this.height);
         crc2.closePath();
         crc2.stroke();
+        crc2.beginPath();
         }   
+
+        getType(): string {
+            return "Triangle";
+        }
     }
 }

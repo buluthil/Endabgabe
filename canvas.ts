@@ -6,6 +6,7 @@ namespace Endabgabe {
     export let crc2: CanvasRenderingContext2D = <CanvasRenderingContext2D>canvas.getContext("2d");
     export let malen: boolean = false;
     export let pensilThickness: number = 10;
+    export let colorofpensil: string;
     export let canvaswidth = canvas.width = window.innerWidth;
     export let canvasheight = canvas.height = window.innerHeight / 2;
     export let eraser: boolean = false;
@@ -21,9 +22,10 @@ namespace Endabgabe {
     export let triangleheight = 200 * Math.cos(Math.PI / 6);
     export let move: boolean = false;
     export let form: HTMLFormElement;
-    //export let url: string = "https://zauberbildlukas-server.herokuapp.com/"
-    export let url: string = "http://localhost:5000";
+    export let url: string = "https://zauberbildlukas.herokuapp.com/";
     crc2.strokeStyle = "Black";
+    export let symbols: Vector[] = [];
+    export let user: string = getUserName();
 
     function init(_event: Event): void {
         let pensilthickness: HTMLInputElement = <HTMLInputElement>document.querySelector("input#pensilThickness");
@@ -63,9 +65,18 @@ namespace Endabgabe {
         username();
     }
 
+
+    function getUserName(): string{
+        let user = prompt("Please enter your username:", "Username")
+        if (user == null){
+            return "";
+        }
+        else{
+            return user;
+        }
+    }
     function username() {
-        let user = prompt("Please enter your username:", "Username");
-        if (user == null) {
+        if (user == "") {
             user = "User";
             document.getElementById("username1")!.innerHTML = 
             "Zauberbild " + user;

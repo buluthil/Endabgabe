@@ -1,17 +1,12 @@
 namespace Endabgabe {
 
-    export class Circle { 
+    export class Circle extends Vector { 
 
-        position: Vector;
         velocity: Vector;
         size: number;
 
         constructor(_event: MouseEvent, _size: number, _velocity: number) {
-            // super(_event, _size);
-            this.set(_event, _size, _velocity)
-        }
-
-        set(_event: MouseEvent, _size: number, _velocity: number) {
+            super(_event.offsetX, _event.offsetY);
             this.position = new Vector(_event.offsetX, _event.offsetY);
             this.velocity = new Vector(Math.floor(Math.random()* 20) + 1, Math.floor(Math.random()* 20) + 1);
             this.size = _size;
@@ -41,6 +36,11 @@ namespace Endabgabe {
             crc2.arc(this.position.x, this.position.y, this.size, 0 ,Math.PI*2, false);
             crc2.stroke();
             crc2.closePath();
+            crc2.beginPath();
+        }
+
+        getType(): string {
+            return "Circle";
         }
     }
 }

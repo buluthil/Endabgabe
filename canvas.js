@@ -19,9 +19,10 @@ var Endabgabe;
     Endabgabe.triangles = [];
     Endabgabe.triangleheight = 200 * Math.cos(Math.PI / 6);
     Endabgabe.move = false;
-    //export let url: string = "https://zauberbildlukas-server.herokuapp.com/"
-    Endabgabe.url = "http://localhost:5000";
+    Endabgabe.url = "https://zauberbildlukas.herokuapp.com/";
     Endabgabe.crc2.strokeStyle = "Black";
+    Endabgabe.symbols = [];
+    Endabgabe.user = getUserName();
     function init(_event) {
         let pensilthickness = document.querySelector("input#pensilThickness");
         pensilthickness.addEventListener("input", Endabgabe.changeThickness);
@@ -59,24 +60,32 @@ var Endabgabe;
         moveobject.addEventListener("click", Endabgabe.moveObject);
         username();
     }
-    function username() {
+    function getUserName() {
         let user = prompt("Please enter your username:", "Username");
         if (user == null) {
-            user = "User";
+            return "";
+        }
+        else {
+            return user;
+        }
+    }
+    function username() {
+        if (Endabgabe.user == "") {
+            Endabgabe.user = "User";
             document.getElementById("username1").innerHTML =
-                "Zauberbild " + user;
+                "Zauberbild " + Endabgabe.user;
             document.getElementById("username2").innerHTML =
-                "Welcome " + user + " !";
+                "Welcome " + Endabgabe.user + " !";
         }
         else {
             document.getElementById("username1").innerHTML =
-                "Zauberbild " + user;
+                "Zauberbild " + Endabgabe.user;
             document.getElementById("username2").innerHTML =
-                "Welcome " + user + " !";
+                "Welcome " + Endabgabe.user + " !";
         }
         Endabgabe.crc2.font = "10rem Arial";
         Endabgabe.crc2.textAlign = "center";
-        Endabgabe.crc2.strokeText(user, Endabgabe.canvaswidth / 2, Endabgabe.canvasheight / 2);
+        Endabgabe.crc2.strokeText(Endabgabe.user, Endabgabe.canvaswidth / 2, Endabgabe.canvasheight / 2);
     }
 })(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=canvas.js.map

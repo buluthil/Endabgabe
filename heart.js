@@ -1,11 +1,9 @@
 "use strict";
 var Endabgabe;
 (function (Endabgabe) {
-    class Heart {
+    class Heart extends Endabgabe.Vector {
         constructor(_event) {
-            this.set(_event);
-        }
-        set(_event) {
+            super(_event.offsetX, _event.offsetY);
             this.position = new Endabgabe.Vector(_event.offsetX, _event.offsetY);
             this.velocity = new Endabgabe.Vector(Math.floor(Math.random() * 20) + 1, Math.floor(Math.random() * 20) + 1);
         }
@@ -42,6 +40,10 @@ var Endabgabe;
             Endabgabe.crc2.bezierCurveTo(85, 25, 75, 37, 75, 40);
             Endabgabe.crc2.stroke();
             Endabgabe.crc2.closePath();
+            Endabgabe.crc2.beginPath();
+        }
+        getType() {
+            return "Heart";
         }
     }
     Endabgabe.Heart = Heart;

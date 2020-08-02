@@ -3,6 +3,9 @@ namespace Endabgabe {
     export class Vector {
         x: number;
         y: number;
+        size: number;
+        position: Vector;
+        velocity: Vector;
 
         constructor(_x: number, _y: number) {
             this.set(_x, _y);
@@ -25,6 +28,18 @@ namespace Endabgabe {
 
         copy(): Vector {
             return new Vector (this.x, this.y);
+        }
+
+        move(_timeslice: number): void {
+            return;
+        }
+
+        draw(): void {
+            return;
+        }
+
+        getType(): string {
+            return "";
         }
     }
 }

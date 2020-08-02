@@ -1,17 +1,27 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.L06_CocktailBar = void 0;
+exports.Endabgabe = void 0;
 const Http = require("http");
 const Url = require("url");
-var L06_CocktailBar;
-(function (L06_CocktailBar) {
+const Mongo = require("mongodb");
+var Endabgabe;
+(function (Endabgabe) {
     let server = Http.createServer();
+    let saveCanvas;
     let port = process.env.PORT;
     if (port == undefined)
         port = 5001;
+    let databaseUrl = "mongodb+srv://test:12345@cluster0-4eh0n.mongodb.net/<dbname>?retryWrites=true&w=majority";
     console.log("Server starting on port:" + port);
     server.listen(port);
     server.addListener("request", handleRequest);
+    connectDatabase(databaseUrl);
+    async function connectDatabase(_url) {
+        let options = { useNewUrlParser: true, useUnifiedTopology: true };
+        let mongoCLient = new Mongo.MongoClient(_url, options);
+        await mongoCLient.connect();
+        saveCanvas = mongoCLient.db("Zauberbild").collection("Pictures");
+    }
     function handleRequest(_request, _response) {
         console.log("What's up?");
         _response.setHeader("content-type", "text/html; charset=utf-8");
@@ -23,8 +33,12 @@ var L06_CocktailBar;
             }
             let jsonString = JSON.stringify(url.query);
             _response.write(jsonString);
+            storeOrder(url.query);
         }
         _response.end();
     }
-})(L06_CocktailBar = exports.L06_CocktailBar || (exports.L06_CocktailBar = {}));
+    function storeOrder(_order) {
+        saveCanvas.insert(_order);
+    }
+})(Endabgabe = exports.Endabgabe || (exports.Endabgabe = {}));
 //# sourceMappingURL=server.js.map

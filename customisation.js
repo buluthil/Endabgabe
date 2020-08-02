@@ -5,28 +5,23 @@ var Endabgabe;
         let slider = document.getElementById("pensilThickness");
         Endabgabe.pensilThickness = parseFloat(slider.value);
         Endabgabe.crc2.lineWidth = Endabgabe.pensilThickness;
-        Endabgabe.crc2.save();
     }
     Endabgabe.changeThickness = changeThickness;
     function changeSize() {
         let slider = document.getElementById("objectSize");
         Endabgabe.radius = parseFloat(slider.value);
-        //trianglesize = parseFloat(slider.value);
         Endabgabe.crc2.lineWidth = Endabgabe.pensilThickness;
-        Endabgabe.crc2.save();
     }
     Endabgabe.changeSize = changeSize;
     function backgroundColor() {
         let backgroundcolor = document.querySelector("select#backgroundColor");
-        Endabgabe.canvas.style.background = backgroundcolor.value;
-        Endabgabe.crc2.lineWidth = Endabgabe.pensilThickness;
-        Endabgabe.crc2.save();
+        Endabgabe.colorofpensil = backgroundcolor.value;
+        Endabgabe.canvas.style.background = Endabgabe.colorofpensil;
     }
     Endabgabe.backgroundColor = backgroundColor;
     function pensilColor() {
         let pensilcolor = document.querySelector("select#pensilColor");
         Endabgabe.crc2.strokeStyle = pensilcolor.value;
-        Endabgabe.crc2.save();
     }
     Endabgabe.pensilColor = pensilColor;
     function fillObject() {

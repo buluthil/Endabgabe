@@ -1,15 +1,12 @@
 namespace Endabgabe {
     
-    export class Heart {
+    export class Heart extends Vector {
 
         position: Vector;
         velocity: Vector;
 
         constructor(_event: MouseEvent) {
-            this.set(_event)
-        }
-
-        set(_event: MouseEvent) {
+            super(_event.offsetX, _event.offsetY);
             this.position = new Vector(_event.offsetX, _event.offsetY);
             this.velocity = new Vector(Math.floor(Math.random()* 20) + 1, Math.floor(Math.random()* 20) + 1);
         }
@@ -49,6 +46,11 @@ namespace Endabgabe {
             crc2.bezierCurveTo(85, 25, 75, 37, 75, 40);
             crc2.stroke();
             crc2.closePath();
+            crc2.beginPath();
         }   
+
+        getType(): string {
+            return "Heart";
+        }
     }
 }

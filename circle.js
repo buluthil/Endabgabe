@@ -1,12 +1,9 @@
 "use strict";
 var Endabgabe;
 (function (Endabgabe) {
-    class Circle {
+    class Circle extends Endabgabe.Vector {
         constructor(_event, _size, _velocity) {
-            // super(_event, _size);
-            this.set(_event, _size, _velocity);
-        }
-        set(_event, _size, _velocity) {
+            super(_event.offsetX, _event.offsetY);
             this.position = new Endabgabe.Vector(_event.offsetX, _event.offsetY);
             this.velocity = new Endabgabe.Vector(Math.floor(Math.random() * 20) + 1, Math.floor(Math.random() * 20) + 1);
             this.size = _size;
@@ -33,6 +30,10 @@ var Endabgabe;
             Endabgabe.crc2.arc(this.position.x, this.position.y, this.size, 0, Math.PI * 2, false);
             Endabgabe.crc2.stroke();
             Endabgabe.crc2.closePath();
+            Endabgabe.crc2.beginPath();
+        }
+        getType() {
+            return "Circle";
         }
     }
     Endabgabe.Circle = Circle;

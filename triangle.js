@@ -1,11 +1,9 @@
 "use strict";
 var Endabgabe;
 (function (Endabgabe) {
-    class Triangle {
+    class Triangle extends Endabgabe.Vector {
         constructor(_event, _height) {
-            this.set(_event, _height);
-        }
-        set(_event, _height) {
+            super(_event.offsetX, _event.offsetY);
             this.position = new Endabgabe.Vector(_event.offsetX + 200, _event.offsetY - 220);
             this.velocity = new Endabgabe.Vector(Math.floor(Math.random() * 20) + 1, Math.floor(Math.random() * 20) + 1);
             this.height = _height; // Höhe des Deiecks kann/soll nicht statisch festgelegt werden                                                                
@@ -34,6 +32,10 @@ var Endabgabe;
             Endabgabe.crc2.lineTo(this.position.x - 200, this.position.y + 300 - this.height);
             Endabgabe.crc2.closePath();
             Endabgabe.crc2.stroke();
+            Endabgabe.crc2.beginPath();
+        }
+        getType() {
+            return "Triangle";
         }
     }
     Endabgabe.Triangle = Triangle;

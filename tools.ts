@@ -77,25 +77,12 @@ namespace Endabgabe {
         let confirmation = confirm("Do you really want to delete your picture?");
         if (confirmation == true) {
             crc2.clearRect(0, 0, canvaswidth, canvasheight);
-            for (let i: number = 0; i < circles.length; i++) {
-                circles.splice(i, 0);
+            while (symbols.length > 0) {
+                symbols.pop();
+                console.log(symbols.length);
             }
         } else {
             alert("Your picture hasn't been deleted");
-        }
-    }
-
-    export async function savePicture(): Promise<void> {
-        let confirmation = confirm("Do you really want to save your picture?");
-        if (confirmation == true) {
-            let formData: FormData = new FormData(form);
-            let query: URLSearchParams = new URLSearchParams(<any>formData);
-            let response: Response = await fetch(url + "?" + query.toString());
-            let responseText: string = await response.text();
-            alert("Your picture has been saved");
-            console.log(responseText);
-        } else {
-            alert("Your picture hasn't been saved");
         }
     }
 
@@ -108,6 +95,7 @@ namespace Endabgabe {
         let mycircle: Circle = new Circle (_event, radius, Math.floor(Math.random() * 20));
         mycircle.draw();
         circles.push(mycircle);
+        symbols.push(mycircle);
     }
 
     export function drawHeart(): void {
@@ -119,6 +107,7 @@ namespace Endabgabe {
         let myheart: Heart = new Heart (_event);
         myheart.draw();
         hearts.push(myheart);
+        symbols.push(myheart);
     }
 
     export function drawTriangle(): void {
@@ -130,6 +119,7 @@ namespace Endabgabe {
         let mytriangle: Triangle = new Triangle(_event, triangleheight);
         mytriangle.draw();
         triangles.push(mytriangle);
+        symbols.push(mytriangle);
     }
 
     export function startAnimation(): void {
@@ -146,7 +136,6 @@ namespace Endabgabe {
         if (counter == 1) {
             counter--;
             animation = false;
-            console.log(circles[0].position.x);
         } else {
             return;
         }
@@ -156,18 +145,10 @@ namespace Endabgabe {
         let request = requestAnimationFrame(update);
         if (animation == true) {
             crc2.clearRect(0, 0, canvaswidth, canvasheight);
-        for (let i: number = 0; i < triangles.length; i++) {
-            triangles[i].move(1/5);
-            triangles[i].draw();
-        }
-        for (let i: number = 0; i < hearts.length; i++) {
-            hearts[i].move(1/5);
-            hearts[i].draw();
-        }
-        for (let i: number = 0; i < circles.length; i++) {
-            circles[i].move(1/5);
-            circles[i].draw();
-        }
+            for (let i: number = 0; i < symbols.length; i++) {
+                symbols[i].move(1/5);
+                symbols[i].draw();
+            }
         } else {
             cancelAnimationFrame(request);
             console.log("stopped animating");
@@ -180,24 +161,25 @@ namespace Endabgabe {
     }
 
     function deleteObject2(_event: MouseEvent): void {
-        for (let i: number = 0; i < circles.length; i++) {
-            if (-circles[i].size <= circles[i].position.x - _event.offsetX && circles[i].size >= circles[i].position.x - _event.offsetX
-                && -circles[i].size <= circles[i].position.y - _event.offsetY && circles[i].size >= circles[i].position.y - _event.offsetY) {
-                circles.splice(i, 1);
-                console.log("Circle deleted");
-            } else {
-                console.log("Circle not clicked");
+
+        for (let i: number = 0; i < symbols.length; i++){
+            let ty = symbols[i].getType()
+            switch (ty){
+                case "Triangle":
+                    if (-triangleheight / 2 <= symbols[i].position.x - 250 - _event.offsetX && triangleheight >= symbols[i].position.x - _event.offsetX &&
+                        -triangleheight / 2 <= symbols[i].position.y + 250 - _event.offsetY && triangleheight >= symbols[i].position.y - _event.offsetY){
+                        symbols.splice(i, 1);
+                    } 
+                case "Circle":
+                    if (-symbols[i].size <= symbols[i].position.x - _event.offsetX && symbols[i].size >= symbols[i].position.x - _event.offsetX
+                        && -symbols[i].size <= symbols[i].position.y - _event.offsetY && symbols[i].size >= symbols[i].position.y - _event.offsetY) {
+                        symbols.splice(i, 1);
+                    }
+                case "Hearts":
+                    break;
             }
         }
-        for (let i: number = 0; i < triangles.length; i++) {
-            if (-triangleheight / 2 <= triangles[i].position.x - _event.offsetX && triangleheight >= triangles[i].position.x - _event.offsetX &&
-                -triangleheight / 2 <= triangles[i].position.y - _event.offsetY && triangleheight >= triangles[i].position.y - _event.offsetY){
-                triangles.splice(i, 1);
-                console.log("Triangle deleted");
-            } else {
-                console.log("Trianle not clicked");
-            }
-        } 
+        return;
     }
 
     export function moveObject(): void {
@@ -214,43 +196,35 @@ namespace Endabgabe {
 
     function movingObject(_event: MouseEvent): void {
         if (move == true) {
-            for (let i: number = 0; i < circles.length; i++) {
-                if (-circles[i].size <= circles[i].position.x - _event.offsetX && circles[i].size >= circles[i].position.x - _event.offsetX
-                    && -circles[i].size <= circles[i].position.y - _event.offsetY && circles[i].size >= circles[i].position.y - _event.offsetY) {// Radius des Kreises - Position des Objektes - Position meiner Maus
-                        console.log("Position Circle X - Mouse X", circles[i].position.x - _event.offsetX);
-                        console.log("Position Circle Y - Mouse Y", circles[i].position.y - _event.offsetY);
-                        crc2.clearRect(0, 0 , canvaswidth, canvasheight);
-                        circles[i].position.x = _event.offsetX;
-                        circles[i].position.y = _event.offsetY;
-                        circles[i].draw();
-                } else {
-                    console.log("Position Circle X - Mouse X", circles[i].position.x - _event.offsetX);
-                    console.log("Position Circle Y - Mouse Y", circles[i].position.y - _event.offsetY);
-                    console.log("Didn't move");
-                }
-            }
-            for (let i: number = 0; i < triangles.length; i++) {
-                if (-200<= triangles[i].position.x - _event.offsetX && 200 >= triangles[i].position.x - _event.offsetX &&
-                    -200 <= triangles[i].position.y - _event.offsetY && 200 >= triangles[i].position.y - _event.offsetY){
-                    crc2.clearRect(0, 0 , canvaswidth, canvasheight);
-                    triangles[i].position.x = _event.offsetX;
-                    triangles[i].position.y = _event.offsetY;
-                    triangles[i].draw();
-                } else {
-                    console.log("Trianle not moved");
-                    //console.log("Triangle Height", triangleheight / 2);
-                    //console.log("Triangle Height - Triangle Position X - Mouse Position X", triangleheight - triangles[i].position.x - _event.offsetX);
+            for (let i: number = 0; i < symbols.length; i++){
+                let ty = symbols[i].getType()
+                switch (ty){
+                    case "Triangle":
+                        if (-triangleheight / 2 <= symbols[i].position.x - 250 - _event.offsetX && triangleheight >= symbols[i].position.x - _event.offsetX &&
+                            -triangleheight / 2 <= symbols[i].position.y + 250 - _event.offsetY && triangleheight >= symbols[i].position.y - _event.offsetY){
+                            symbols[i].position.x = _event.offsetX;
+                            symbols[i].position.y = _event.offsetY;
+                            crc2.clearRect(0, 0, canvaswidth, canvasheight);
+                            symbols[i].draw();
+                        }
+                    case "Circle":
+                        if (-symbols[i].size <= symbols[i].position.x - _event.offsetX && symbols[i].size >= symbols[i].position.x - _event.offsetX
+                            && -symbols[i].size <= symbols[i].position.y - _event.offsetY && symbols[i].size >= symbols[i].position.y - _event.offsetY) {
+                            symbols[i].position.x = _event.offsetX;
+                            symbols[i].position.y = _event.offsetY;
+                            crc2.clearRect(0, 0, canvaswidth, canvasheight);
+                            symbols[i].draw();
+                        }
+                    case "Hearts":
+                    break;
                 }
             }
         }
     }
 
     function stopmovingObject(): void { // Objekte auf dem Canvas sollen nach Loslassen der Maus wieder gezeichnet werden
-        for (let i: number = 0; i < circles.length; i++) { 
-            circles[i].draw();
-        }
-        for (let i: number = 0; i < triangles.length; i++) {
-            triangles[i].draw();
+        for (let i: number = 0; i < symbols.length; i++) { 
+            symbols[i].draw();
         }
         move = false;
     }

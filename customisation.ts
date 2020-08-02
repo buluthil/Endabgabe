@@ -4,28 +4,23 @@ namespace Endabgabe {
         let slider = <HTMLInputElement>document.getElementById("pensilThickness")!;
         pensilThickness = parseFloat(slider.value);
         crc2.lineWidth = pensilThickness;
-        crc2.save();
     }
 
     export function changeSize() {
         let slider = <HTMLInputElement>document.getElementById("objectSize")!;
         radius = parseFloat(slider.value);
-        //trianglesize = parseFloat(slider.value);
         crc2.lineWidth = pensilThickness;
-        crc2.save();
     }
 
     export function backgroundColor() {
         let backgroundcolor: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#backgroundColor");
-        canvas.style.background = backgroundcolor.value;
-        crc2.lineWidth = pensilThickness;
-        crc2.save();
+        colorofpensil = backgroundcolor.value;
+        canvas.style.background = colorofpensil;
     }
 
     export function pensilColor() {
         let pensilcolor: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#pensilColor");
         crc2.strokeStyle = pensilcolor.value;
-        crc2.save();
     }
 
     export function fillObject(): void {

@@ -20,6 +20,15 @@ var Endabgabe;
         copy() {
             return new Vector(this.x, this.y);
         }
+        move(_timeslice) {
+            return;
+        }
+        draw() {
+            return;
+        }
+        getType() {
+            return "";
+        }
     }
     Endabgabe.Vector = Vector;
 })(Endabgabe || (Endabgabe = {}));
