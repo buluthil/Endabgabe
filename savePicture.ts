@@ -1,7 +1,5 @@
 namespace Endabgabe {
 
-    let options: string[];
-
     export interface PictureProperties {
 
         type: string;
@@ -15,13 +13,6 @@ namespace Endabgabe {
     export function savePicture(): void {
         let confirmation = confirm("Do you really want to save your picture?");
         if (confirmation == true) {
-            for (let i: number = 0; i < options.length; i++) {
-                if (options[i] == name) {
-                    alert("Please choose a different name")
-                    getUserName();
-                    return
-                }
-            }
             insertPicture(user);
         } else {
             alert("Your picture hasn't been saved");
@@ -69,34 +60,6 @@ namespace Endabgabe {
             alert("Your picture " + name + " has been saved!")
         } else {
             alert("Error occured");
-        }
-        findPictures()
-    }
-
-    // Beispiel genommen an KoehlerAI's Endabgabe zur Weiterberarbeitung der Daten welche in Datenbank gespeichert wurden
-
-    async function findPictures(): Promise<void> {
-        let response: Response = await fetch (url + "?" + "getPicture=yes");
-        let responseText: string = await response.text();
-        createDatalist(responseText);
-    }
-
-    function createDatalist(_response: string) {
-        let picturecollection: HTMLDataElement = <HTMLDataElement>document.getElementById("picturecollection");
-        options = _response.split(",");
-        while (picturecollection.firstChild) {
-            picturecollection.removeChild(picturecollection.firstChild);
-        }
-
-        for (let entry of options) {
-            if (entry = "") {
-                //skip this
-            } else {
-                let option: HTMLOptionElement = document.createElement("option");
-                option.setAttribute("name", entry);
-                option.value = entry;
-                picturecollection.appendChild(option);
-            }
         }
     }
 }
