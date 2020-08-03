@@ -11,7 +11,7 @@ export namespace Endabgabe {
     if (port == undefined)
         port = 5001;
     
-    let databaseUrl: string = "mongodb+srv://Hilal:12345@endabgabe.xoi33.mongodb.net/Endabgabe?retryWrites=true&w=majority"; //"mongodb+srv://test:12345@cluster0-4eh0n.mongodb.net/<dbname>?retryWrites=true&w=majority";
+    let databaseUrl: string = "mongodb+srv://Hilal:12345@endabgabe.xoi33.mongodb.net/<dbname>?retryWrites=true&w=majority"; //"mongodb+srv://test:12345@cluster0-4eh0n.mongodb.net/<dbname>?retryWrites=true&w=majority";
 
     console.log("Server starting on port:" + port);
 
