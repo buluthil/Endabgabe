@@ -23,7 +23,7 @@ namespace Endabgabe {
     export let triangleheight = 200 * Math.cos(Math.PI / 6);
     export let move: boolean = false;
     export let form: HTMLFormElement;
-    export let url: string = "https://zauberbildlukas.herokuapp.com/";
+    export let url: string = "https://zauberbildhilal.herokuapp.com/";
     crc2.strokeStyle = "Black";
     export let symbols: Vector[] = [];
     export let user: string = getUserName();

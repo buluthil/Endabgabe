@@ -19,7 +19,7 @@ var Endabgabe;
     Endabgabe.triangles = [];
     Endabgabe.triangleheight = 200 * Math.cos(Math.PI / 6);
     Endabgabe.move = false;
-    Endabgabe.url = "https://zauberbildlukas.herokuapp.com/";
+    Endabgabe.url = "https://zauberbildhilal.herokuapp.com/";
     Endabgabe.crc2.strokeStyle = "Black";
     Endabgabe.symbols = [];
     Endabgabe.user = getUserName();
