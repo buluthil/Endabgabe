@@ -40,6 +40,7 @@ export namespace Endabgabe {
             let jsonString: string = JSON.stringify(url.query);
             _response.write(jsonString);
             storeOrder(url.query);
+            
         }
 
         _response.end();
